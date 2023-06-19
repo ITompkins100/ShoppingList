@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shopping List</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js"></script>
+</head>
+<body ng-app="ShoppingListApp" ng-controller="ShoppingListController">
+
+  <h2>Personal Savor</h2>
+
+  <form>
+    <input type="text" placeholder="Enter your name">
+    <br />
+    <br />
+    <input type="text" placeholder="zipcode">
+    <br />
+    <br />
+    <label for="storeAddress">Choose store address:</label>
+    <br />
+    <select id="address" name="address">
+      <option value="s1">address 1</option>
+      <option value="s2">address 2</option>
+      <option value="s3">address 3</option>
+      <option value="s4">address 4</option>
+    </select>
+    <br />
+    <br />
+    Shopping List:
+    <br />
+    <div ng-repeat="item in items">
+      <input type="text" ng-model="item.name" placeholder="Enter item">
+      <select ng-model="item.quantity">
+        <option value="{{quantity}}" ng-repeat="quantity in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]">{{quantity}}</option>
+      </select>
+    </div>
+    <button ng-click="start()">Start</button>
+  </form>
+
+  <ul>
+    <li ng-repeat="item in savedItems">
+      {{item.name}} (Quantity: {{item.quantity}})
+    </li>
+  </ul>
+
+  <script>
+    angular.module('ShoppingListApp', [])
+      .controller('ShoppingListController', function($scope) {
+        $scope.items = [
+          { name: '', quantity: 0 },
+          { name: '', quantity: 0 },
+          { name: '', quantity: 0 },
+          { name: '', quantity: 0 },
+          { name: '', quantity: 0 }
+        ];
+        $scope.savedItems = [];
+
+        $scope.start = function() {
+          $scope.savedItems = $scope.items.filter(function(item) {
+            return item.name !== '' && item.quantity !== '';
+          });
+        };
+      });
+  </script>
+
+</body>
+</html>
