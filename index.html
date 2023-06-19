@@ -3,39 +3,66 @@
 <head>
   <title>Shopping List</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js"></script>
+  <style>
+    .button-container {
+      display: flex;
+    }
+    .button-container button {
+      margin-right: 10px;
+    }
+  </style>
 </head>
 <body ng-app="ShoppingListApp" ng-controller="ShoppingListController">
 
   <h2>Personal Savor</h2>
 
-  <form>
-    <input type="text" placeholder="Enter your name">
-    <br />
-    <br />
-    <input type="text" placeholder="zipcode">
-    <br />
-    <br />
-    <label for="storeAddress">Choose store address:</label>
-    <br />
-    <select id="address" name="address">
-      <option value="s1">address 1</option>
-      <option value="s2">address 2</option>
-      <option value="s3">address 3</option>
-      <option value="s4">address 4</option>
-    </select>
-    <br />
-    <br />
-    Shopping List:
-    <br />
-    <div ng-repeat="item in items">
-      <input type="text" ng-model="item.name" placeholder="Enter item">
-      <select ng-model="item.quantity">
-        <option value="{{quantity}}" ng-repeat="quantity in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]">{{quantity}}</option>
-      </select>
-    </div>
-    <button ng-click="start()">Start</button>
-  </form>
+  <table>
+    <tr>
+      <td>
+        <form>
+            <input type="text" placeholder="Enter your name">
+            <br />
+            <br />
+            <br />
+            <input type="text" placeholder="zipcode">
+            <br />
+            <br />
+            <br />
+            <div class="button-container">
+                <button ng-click="target()">Target</button><br>
+                <button ng-click="walmart()">Wal-Mart</button><br>
+                <button ng-click="hyvee()">Hy-Vee</button>            
+            </div>
+            <br />
+            <br />
+            <label for="storeAddress">Choose store address:</label>
+            <br />
+            <select id="address" name="address">
+            <option value="s1">address 1</option>
+            <option value="s2">address 2</option>
+            <option value="s3">address 3</option>
+            <option value="s4">address 4</option>
+            </select>
+            <br />
+            <br />
+            Shopping List:
+            <br />
+            <br />
+            <div ng-repeat="item in items">
+                <input type="text" ng-model="item.name" placeholder="Enter item">
+                <select ng-model="item.quantity">
+                    <option value="{{quantity}}" ng-repeat="quantity in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]">{{quantity}}</option>
+                </select>
+            </div>
+            <br />
+            <button ng-click="start()">Start</button>
+        </form>
+      </td>
+      <td>
 
+    </td>
+    </tr>
+</table>
   <ul>
     <li ng-repeat="item in savedItems">
       {{item.name}} (Quantity: {{item.quantity}})
@@ -58,6 +85,27 @@
           $scope.savedItems = $scope.items.filter(function(item) {
             return item.name !== '' && item.quantity !== '';
           });
+        };
+
+        $scope.start = function() {
+          $scope.savedItems = $scope.items.filter(function(item) {
+            return item.name !== '' && item.quantity !== '';
+          });
+        };
+
+        $scope.target = function() {
+          // Functionality for Target button
+          console.log("Target button clicked!");
+        };
+
+        $scope.walmart = function() {
+          // Functionality for Wal-Mart button
+          console.log("Wal-Mart button clicked!");
+        };
+
+        $scope.hyvee = function() {
+          // Functionality for Hy-Vee button
+          console.log("Hy-Vee button clicked!");
         };
       });
   </script>
