@@ -1,0 +1,73 @@
+<style>
+    .button-container {
+      display: flex;
+    }
+    .button-container button {
+      margin-right: 10px;
+    }
+
+    #nameentry {
+        width: max-content;
+    }
+  </style>
+  
+  <h2>Personal Savor</h2>
+
+<table>
+  <tr>
+    <td>
+      <form>
+        <input type="text" placeholder="Enter your name" id="nameentry">
+        <br />
+        <br />
+        <br />
+        <input type="text" placeholder="zipcode">
+        <br />
+        <br />
+        <br />
+        <div class="button-container">
+          <button (click)="target()">Target</button><br>
+          <button (click)="walmart()">Wal-Mart</button><br>
+          <button (click)="hyvee()">Hy-Vee</button>
+        </div>
+        <br />
+        <br />
+        <label for="storeAddress">Choose store address:</label>
+        <br />
+        <select id="address" name="address">
+          <option value="s1">address 1</option>
+          <option value="s2">address 2</option>
+          <option value="s3">address 3</option>
+          <option value="s4">address 4</option>
+        </select>
+        <br />
+        <br />
+        Shopping List:
+        <br />
+        <br />
+        <div *ngFor="let item of items">
+
+            <!-- Error on the following line: error TS2322: Type 'Event' is not assignable to type 'string'. -->
+            <!-- <input type="text" [(ngModel)]="item.name" placeholder="Enter item"> -->
+            <!-- I'm getting an error in the following 3 lines: error NG8002: Can't bind to 'ngValue' since it isn't a known property of 'option'. -->
+            <!--
+                <select [(ngModel)]="item.quantity">
+              <option *ngFor="let quantity of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]" [ngValue]="quantity">{{quantity}}</option>
+            </select>
+        -->
+       </div>
+        <br />
+        <button (click)="start()">Start</button>
+      </form>
+    </td>
+    <td>
+
+    </td>
+  </tr>
+</table>
+
+<ul>
+  <li *ngFor="let item of savedItems">
+    {{item.name}} (Quantity: {{item.quantity}})
+  </li>
+</ul>
